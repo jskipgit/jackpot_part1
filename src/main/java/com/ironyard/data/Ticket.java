@@ -29,6 +29,36 @@ public class Ticket {
         }
     }
 
+    /**
+     * Constructor allows user to specify exact numbers of ticket
+     * @param one
+     * @param two
+     * @param three
+     * @param four
+     * @param five
+     * @param six
+     */
+    public Ticket(int one, int two, int three, int four, int five, int six){
+        numbers.add(one);
+        numbers.add(two);
+        numbers.add(three);
+        numbers.add(four);
+        numbers.add(five);
+        numbers.add(six);
+        
+    }
+
+    /**
+     * Constructor allows user to specify exact numbers of ticket via ArralList
+     * @param myNumbers
+     */
+    public Ticket(ArrayList<Integer> myNumbers) throws Exception {
+        if(myNumbers.size()!=6){
+            throw new Exception("Exactly 6 numbers should be sent to new Ticket");
+        }
+        numbers.addAll(myNumbers);
+    }
+
     private int generateRandomTicketNumber() {
         Random r = new Random();
         int got = r.nextInt((Ticket.MAX - Ticket.MIN) + 1) + Ticket.MIN;
