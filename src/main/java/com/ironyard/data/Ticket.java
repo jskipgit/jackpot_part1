@@ -1,5 +1,6 @@
 package com.ironyard.data;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -9,7 +10,7 @@ public class Ticket {
     private final static int MAX = 53;
     private final static int MIN = 1;
 
-    private int[] numbers = new int[6];
+    private ArrayList<Integer> numbers = new ArrayList<Integer>();
 
     /**
      * Constructor creates a new ticket with random
@@ -17,21 +18,14 @@ public class Ticket {
      */
     public Ticket() {
 
-        for (int i = 0; i < numbers.length; i++) {
-            boolean isUnque;
+        for (int i = 0; i < 6; i++) {
             int tmp = 0;
             do{
-                isUnque = true;
                 tmp = generateRandomTicketNumber();
-                for(int x:numbers){
-                    if(tmp == x){
-                        isUnque = false;
-                    }
-                }
-            }while(!isUnque);
+            }while(numbers.contains(tmp));
 
             // i know tmp has a unique value
-            numbers[i] = tmp;
+            numbers.add(tmp);
         }
     }
 
@@ -43,8 +37,8 @@ public class Ticket {
 
     public String toString() {
         String display = "<strong>";
-        for (int i = 0; i < numbers.length; i++) {
-            display = display + String.format("%02d", numbers[i]) + "  ";
+        for (int i = 0; i < numbers.size(); i++) {
+            display = display + String.format("%02d", numbers.get(i)) + "  ";
         }
         display = display + "</strong>";
         return display;
